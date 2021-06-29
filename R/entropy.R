@@ -46,8 +46,9 @@ measure.permutation_entropy <- function(time_serie, order=4) {
 #' @param edim the embedding dimension, as for chaotic time series; a preferred value is 2
 #' @param r filter factor; work on heart rate variability has suggested setting r to be 0.2 times the standard deviation of the data
 #' @importFrom pracma approx_entropy
+#' @importFrom stats sd
 #' @return The value of the complexity measure: aproximation entropy.
-measure.aproximation_entropy <- function(time_serie, edim = 2, r = 0.2*sd(time_serie)) {
+measure.aproximation_entropy <- function(time_serie, edim = 2, r = 0.2*stats::sd(time_serie)) {
   result = tryCatch({
     out=pracma::approx_entropy(time_serie, edim = edim, r = r)
     out
@@ -135,6 +136,7 @@ measure.sample_entropy <-function(y, M=2, r=0.2*sd(y), package="") {
 #' Based on: http://uic.edu.hk/~kentsang/fyp2014/Fast%20Fourier%20Transform11.htm
 #'
 #' @param y input time series data
+#' @importFrom stats fft
 #' @return spectral entropy
 measure.spectral_entropy <- function(y) {
   result = tryCatch({

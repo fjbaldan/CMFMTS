@@ -4,7 +4,11 @@
 \alias{measure.aproximation_entropy}
 \title{Aproximation Entropy}
 \usage{
-measure.aproximation_entropy(time_serie, edim = 2, r = 0.2 * sd(time_serie))
+measure.aproximation_entropy(
+  time_serie,
+  edim = 2,
+  r = 0.2 * stats::sd(time_serie)
+)
 }
 \arguments{
 \item{time_serie}{A time serie, object of type ts.}

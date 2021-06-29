@@ -13,7 +13,6 @@ measure.shannonEntropy <- function(time_serie, method) {
   result = tryCatch({
     if(method %in% c("Jeffreys", "Laplace", "SG", "minimax","MM","shrink","CS","ML")){
       counts=entropy::discretize(time_serie, numBins=10)
-      # counts=time_serie
       out=entropy::entropy(counts, method=method,verbose=F)
       out
     }else{

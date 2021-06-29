@@ -12,6 +12,7 @@
 #' @export
 #' @importFrom parallel mclapply
 #' @importFrom R.utils withTimeout
+#' @importFrom stats as.ts ts
 cmfmts <- function(dataset=NULL, n_cores=(parallel::detectCores()-1), na=T, scale=T, timeout=999999) {
   if(is.null(dataset)==TRUE){
     return(0)
@@ -50,7 +51,7 @@ cmfmts <- function(dataset=NULL, n_cores=(parallel::detectCores()-1), na=T, scal
     result <- c(result, if(is.null(aux)) measure.spectral_entropy(NA) else aux )
 
     aux=R.utils::withTimeout({measure.PE_nforbiden(time_serie,6)}, timeout = timeout, onTimeout = "silent")
-    result <- c(result, if(is.null(aux)) measure.nforbiden(NA) else aux )
+    result <- c(result, if(is.null(aux)) measure.PE_nforbiden(NA) else aux )
 
     aux=R.utils::withTimeout({measure.kurtosis(time_serie)}, timeout = timeout, onTimeout = "silent")
     result <- c(result, if(is.null(aux)) measure.kurtosis(NA) else aux )
@@ -59,7 +60,7 @@ cmfmts <- function(dataset=NULL, n_cores=(parallel::detectCores()-1), na=T, scal
     result <- c(result, if(is.null(aux)) measure.skewness(NA) else aux )
 
     aux=R.utils::withTimeout({measures.tsfeatures(time_serie)}, timeout = timeout, onTimeout = "silent")
-    result <- c(result, if(is.null(aux)) sapply(measures.Hyndman(as.vector(0)),function(x){NA}) else aux )
+    result <- c(result, if(is.null(aux)) sapply(measures.tsfeatures(as.vector(0)),function(x){NA}) else aux )
 
     result
   }
