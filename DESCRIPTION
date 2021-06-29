@@ -12,6 +12,6 @@ Description: Calculate the characteristics of a dataframe composed by
 License: GPL-3 + file LICENSE
 LazyData: true
 Imports:
-  R.utils, pracma, entropy, statcomp, e1071, parallel, tsfeatures, combinat
+  R.utils, pracma, entropy, statcomp, e1071, parallel, tsfeatures, combinat, stats
 RoxygenNote: 7.1.1
 Depends: R (>= 3.6.0)

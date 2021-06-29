@@ -8,17 +8,12 @@
 #' @importFrom statcomp global_complexity
 #' @return Number of "forbiden patterns" (cf. Amigo 2010)
 measure.PE_nforbiden <- function(time_serie, ndemb) {
-  # suppressMessages(library(statcomp))
   result = tryCatch({
     out=statcomp::global_complexity(x = time_serie, ndemb = ndemb)
-    # out=out[c(1,3)]
-    # names(out)=c("permutation_entropy","nforbiden")
     out=out[c(3)]
     names(out)=c("nforbiden")
     out
   }, error = function(e) {
-    # out=c(NA,NA)
-    # names(out)=c("permutation_entropy","nforbiden")
     out=c(NA)
     names(out)=c("nforbiden")
     out
