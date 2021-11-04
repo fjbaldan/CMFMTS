@@ -9,7 +9,7 @@ devtools::install_github("fjbaldan/CMFMTS")
 ```
 
 
-# Use case
+# Examples
 
 ```
 # Examples of use
